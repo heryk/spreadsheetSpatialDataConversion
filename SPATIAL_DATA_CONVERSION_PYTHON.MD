@@ -49,7 +49,7 @@ python -m pip show pyproj
 
 - Python will create 2 new columns named "lat_decimal" and "long_decimal" to store all calculed DD values.
 
-- **IMPORTANT:** The 3 following coordinate conversion calculations will be ignored if they do not contain the proper column names. In addition, please note that these steps are executed in order. The first step to add spatial conversion data to the lat_decimal and long_decimal fields, will block the followoing step from overwritting theses values.  
+- **IMPORTANT:** The 3 projection conversions calculations in the following steps will be ignored if they do not contain the proper column names. In addition, please note that these steps are executed in order. The first step to add spatial conversion data to the lat_decimal and long_decimal fields, will block the followoing step from overwritting theses values.  
 
 ### i - For DD Coordinates
 
