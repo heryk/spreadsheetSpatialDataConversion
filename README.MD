@@ -12,6 +12,6 @@ Refer to the [SPATIAL_DATA_CONVERSION_PYTHON.MD](SPATIAL_DATA_CONVERSION_PYTHON.
 
 ## 2. Using PostgreSQL to Convert Spreadsheet Spatial Data to Geographic Coordinates
 
-This method explains how to use SQL and PostgreSQL to convert and standardize spatial data in an Excel spreadsheet to decimal degrees (DD).
+This method explains how to use SQL and PostgreSQL with Postgis extension to convert and standardize spatial data in an Excel spreadsheet to decimal degrees (DD).
 
 For more details, see the [SPATIAL_DATA_CONVERSION_SQL.MD](SPATIAL_DATA_CONVERSION_SQL.MD) guide.
