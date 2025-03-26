@@ -2,7 +2,7 @@
 
 This guide outlines two methods for converting and standardizing spatial data in an Excel spreadsheet to decimal degrees (DD). The first method uses Python, while the second method utilizes PostgreSQL with Postgis extension.
 
-These methods support spatial data in formats such as DD (Decimal Degrees), DMS (Degrees Minutes Seconds), and UTM (Universal Transverse Mercator). They can also be adapted to handle other formats.
+These methods support spatial data in formats such as DD (Decimal Degrees), DMS (Degrees Minutes Seconds), and UTM (Universal Transverse Mercator). They can also be adapted to handle other projections.
 
 ## 1. Using Python to Convert Spreadsheet Spatial Data to Geographic Coordinates
 
