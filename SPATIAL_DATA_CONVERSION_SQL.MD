@@ -13,7 +13,7 @@ This guide explains how to convert and standardize spatial data in an Excel spre
 
 - For spatial conversions, you need a special minimalist spreadsheet containing only spatial data and an "id" column. The "id" column will enable you to rematch your spatial data coversion to your original spreedsheet data. Here is an example:
 
-![alt text](../images/image-id.png)
+![alt text](images/image-id.png)
 
 - If you already have some spatial coordinates in DD, you may preserve this information in columns named "decimlat" and "decimlong". Theses columns will be kept intact during the coordinates calculations in the follooing steps. This will enable you compare theses values with the new DD calculations.
 
@@ -27,14 +27,14 @@ This guide explains how to convert and standardize spatial data in an Excel spre
 
   - WGS 84 / UTM zone 12N: EPSG:32612 → 32612
 
-![alt text](../images/image-utm.png)
+![alt text](images/image-utm.png)
 
 
 ### For Degree/Minute/Second (DMS) Coordinates
 
 - Ensure the spreadsheet contains six columns named: deglat, minlat, seclat, deglong, minlong, seclong. These columns must contain your coordinate data in DMS that you wish to convert to DD.
 
-![alt text](../images/image-dms.png)
+![alt text](images/image-dms.png)
 
 
 ### Final Spreadsheet Formating/Validation
@@ -207,7 +207,7 @@ SELECT * FROM public.processed_table WHERE deglat IS NOT NULL LIMIT 100;
 
 - Before exporting your data, you can view the geom column in a PGAdmin map. 
 
-![alt text](../images/image-4.png)
+![alt text](images/image-4.png)
 
 - Use PGAdmin or a tool like DBeaver to export processed_table as a CSV file. Use ; as the delimiter for better compatibility. To export data, right click on the "procesed_table" and select "Export Data".
 
@@ -222,8 +222,8 @@ Instead of connectiong QGIS to your DB, you can also open your exported CVS file
 - Add an OpenStreetMap layer to QGIS - https://www.youtube.com/watch?v=XHQawq_tP98
 - Use projection epsg:3857 for a better display of OpenStreetMap in QGIS.
 
-![alt text](../images/image-2.png)
+![alt text](images/image-2.png)
 
-![alt text](../images/image-qgis.png)
+![alt text](images/image-qgis.png)
 
 

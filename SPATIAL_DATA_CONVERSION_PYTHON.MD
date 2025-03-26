@@ -66,7 +66,7 @@ python -m pip show pyproj
 
   - WGS 84 / UTM zone 12N: EPSG:32612 → 32612
 
-![alt text](../images/image-utm.png)
+![alt text](images/image-utm.png)
 
 
 ### iii - For Degree/Minute/Second (DMS) Coordinates
@@ -75,7 +75,7 @@ python -m pip show pyproj
 
 - Ensure the spreadsheet contains these six columns. These columns must contain your coordinate data in DMS that you wish to convert to DD.
 
-![alt text](../images/image-dms.png)
+![alt text](images/image-dms.png)
 
 
 ### Final Spreadsheet Formating/Validation
@@ -114,6 +114,6 @@ You can open your exported CVS file and view it in a QGIS map to visualy validat
 - Add an OpenStreetMap layer to QGIS - https://www.youtube.com/watch?v=XHQawq_tP98
 - Use projection epsg:3857 for a better display of OpenStreetMap in QGIS.
 
-![alt text](../images/image-qgis.png)
+![alt text](images/image-qgis.png)
 
 
