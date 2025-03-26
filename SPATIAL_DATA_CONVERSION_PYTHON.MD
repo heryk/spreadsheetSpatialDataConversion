@@ -60,7 +60,7 @@ python -m pip show pyproj
 
 - If you have no UTM corrdinates to convert you may ignore this step. If Python does not find the required UTM columns ("utmeast", "utmnorth" and "utmzone"), this conversion step will be skipped. These columns must containing the spatial data you wish to covert.
 
-- Identify the appropriate EPSG code for your UTM zone (e.g., WGS 84 / UTM zone 11N = EPSG:32611). Refer to EPSG.io for codes. Create a column named "utmsrid" and populate it with the corresponding SRID for each row. Example EPSG codes:
+- Identify the appropriate EPSG code for your UTM zone (e.g., WGS 84 / UTM zone 11N = EPSG:32611). Refer to EPSG.io DB for codes (Example: https://epsg.io/32611). Create a column named "utmsrid" and populate it with the corresponding SRID for each row. Example EPSG codes:
 
   - WGS 84 / UTM zone 11N: EPSG:32611 → 32611
 
