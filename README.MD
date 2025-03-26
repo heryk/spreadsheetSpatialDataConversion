@@ -14,4 +14,4 @@ Refer to the [SPATIAL_DATA_CONVERSION_PYTHON.MD](SPATIAL_DATA_CONVERSION_PYTHON.
 
 This method explains how to use SQL and PostgreSQL to convert and standardize spatial data in an Excel spreadsheet to decimal degrees (DD).
 
-For more details, see the [SPATIAL_DATA_CONVERSION_POSTGRESQL.MD](SPATIAL_DATA_CONVERSION_POSTGRESQL.MD) guide.
+For more details, see the [SPATIAL_DATA_CONVERSION_SQL.MD](SPATIAL_DATA_CONVERSION_SQL.MD) guide.
