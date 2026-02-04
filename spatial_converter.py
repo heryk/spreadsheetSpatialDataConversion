@@ -6,8 +6,7 @@ from various formats to Decimal Degrees (DD).
 
 Functions:
 - convert_dms_to_dd(row): Converts Degree/Minute/Second (DMS) coordinates to Decimal Degrees (DD).
-- convert_utm_to_dd(row): Converts Universal Transverse 
-  Mercator (UTM) coordinates to Decimal Degrees (DD).
+- convert_utm_to_dd(row): Converts Universal Transverse Mercator (UTM) coordinates to Decimal Degrees (DD).
 
 Dependencies:
 - pandas: Used for data manipulation and handling.
@@ -37,32 +36,34 @@ Example:
 
     # Example DataFrame with UTM coordinates
     df_utm = pd.DataFrame({
-        'utmeast': [500000, 400000],
-        'utmnorth': [4649776, 5000000],
+        'utm_x': [500000, 600000],
+        'utm_y': [4649776, 5123456],
         'utmsrid': [32633, 32634]
     })
 
     # Convert UTM to DD
-    df_utm[['lat_decimal', 'lon_decimal']] = df_utm.apply(convert_utm_to_dd, axis=1)
+    df_utm[['lat_decimal', 'lon_decimal']] = (
+        df_utm.apply(convert_utm_to_dd, axis=1)
+    )
 """
+import argparse
 from pathlib import Path
-import pandas as pd
 import pyproj
+import pandas as pd
 from pyproj import Transformer
 # import numpy as np
 
 
 def convert_dms_to_dd(row):
     """Convert Degree/Minute/Second coordinates to Decimal Degrees"""
-    if pd.notna(row['deglat']) and pd.notna(row['minlat']) and pd.notna(row['seclat']):
-        lat = row['deglat'] + (row['minlat'] / 60) + (row['seclat'] / 3600)
-    else:
-        lat = None
+    lat = None
+    lon = None
 
-    if pd.notna(row['deglong']) and pd.notna(row['minlong']) and pd.notna(row['seclong']):
+    if pd.notna(row.get('deglat')) and pd.notna(row.get('minlat')) and pd.notna(row.get('seclat')):
+        lat = row['deglat'] + (row['minlat'] / 60) + (row['seclat'] / 3600)
+
+    if pd.notna(row.get('deglong')) and pd.notna(row.get('minlong')) and pd.notna(row.get('seclong')):
         lon = row['deglong'] + (row['minlong'] / 60) + (row['seclong'] / 3600)
-    else:
-        lon = None
 
     return pd.Series({'lat_decimal': lat, 'lon_decimal': lon})
 
@@ -77,8 +78,7 @@ def convert_utm_to_dd(row):
         # Transform coordinates
         lon, lat = transformer.transform(row['utmeast'], row['utmnorth'])
         return pd.Series({'lat_decimal': lat, 'lon_decimal': lon})
-    else:
-        return pd.Series({'lat_decimal': None, 'lon_decimal': None})
+    return pd.Series({'lat_decimal': None, 'lon_decimal': None})
 
 def process_spatial_data(local_input_file, local_output_file):
     """
@@ -161,9 +161,47 @@ def process_spatial_data(local_input_file, local_output_file):
         print(f"An unexpected error occurred: {str(e)}")
 
 if __name__ == "__main__":
-    # Get the current file's directory and move up one level to find the input file
+    # Parse command-line arguments for input/output file paths
+    parser = argparse.ArgumentParser(
+        description="Convert spatial coordinates (DD/UTM/DMS) to decimal degrees"
+    )
+    # Optional flags
+    parser.add_argument(
+        "-i", "--input",
+        help="Path to the input CSV file",
+        required=False
+    )
+    parser.add_argument(
+        "-o", "--output",
+        help="Path to the output CSV file",
+        required=False
+    )
+    # Positional arguments (input then output) for convenience
+    parser.add_argument(
+        "input_path",
+        nargs="?",
+        help="Input CSV path (positional alternative to --input)",
+        default=None
+    )
+    parser.add_argument(
+        "output_path",
+        nargs="?",
+        help="Output CSV path (positional alternative to --output)",
+        default=None
+    )
+
+    args = parser.parse_args()
+
+    # Default to files in the current directory if not provided
     current_dir = Path(__file__).parent
-    #input_file = current_dir.parent / "demoInputSpatialConversionData.csv"
-    input_file = current_dir / "input_spatial_data.csv"
-    output_file = current_dir / "output_converted_spatial_data.csv"
+    default_input = current_dir / "input_spatial_data.csv"
+    default_output = current_dir / "output_converted_spatial_data.csv"
+
+    # Prefer flags, then positionals, else defaults
+    chosen_input = args.input if args.input else args.input_path
+    chosen_output = args.output if args.output else args.output_path
+
+    input_file = Path(chosen_input) if chosen_input else default_input
+    output_file = Path(chosen_output) if chosen_output else default_output
+
     process_spatial_data(str(input_file), str(output_file))
