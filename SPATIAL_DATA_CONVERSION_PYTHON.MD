@@ -103,10 +103,10 @@ python -m pip show pyproj
 python spatial_converter.py
 
 # With flags
-python spatial_converter.py -i .\input_spatial_data.csv -o .\output_converted_spatial_data.csv
+python spatial_converter.py -i ./input_spatial_data.csv -o ./output_converted_spatial_data.csv
 
 # With positional arguments (input then output)
-python spatial_converter.py .\input_spatial_data.csv .\output_converted_spatial_data.csv
+python spatial_converter.py ./input_spatial_data.csv ./output_converted_spatial_data.csv
 ```
 
 If run successfully, the Python code will create a file named `output_converted_spatial_data.csv` containing your converted spatial data. Your new DD coordinates will be in the columns `lat_decimal` and `lon_decimal`.
